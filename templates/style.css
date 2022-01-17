@@ -1,0 +1,13 @@
+div.mytable {
+    display: table;
+    width: 100%;
+}
+
+div.mytable > div {
+    display: table-row;
+    width: 100%;
+
+}
+div.mytable > div > div {
+    display: table-cell; width: 20%; padding:1em;
+}

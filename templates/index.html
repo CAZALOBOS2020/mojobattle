@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <h1 style="margin: 10px;">Bienvenidos a la alpha de piedra papel o tijera para mis amigos de ChiaTK!</h1>
+
+  {% if coin_txaddress %}
+    <p>
+      Envia 100 mojos ( 0.0000000001 TXCH) desde Testnet10 a esta direccón :
+        <h4>{{ coin_txaddress }} </h4>
+      para comenzar el combate
+    </p>
+  {% else %}
+    <p>
+      Crear un ataque para comenzar el combate.
+    </p>
+  {% endif %}
+
+  <p style="margin-bottom: 25px">Crear o ver combates</p>
+
+  <a href="{{ url_for('create') }}" style="font-size: 14px; text-decoration: none; width: 125px; border-radius: 5px; margin: 5px; padding: 10px; background-color: #62a7ce; color: white;">
+    Crear Ataque
+  </a>
+
+
+  <a href="{{ url_for('search') }}" style="font-size: 14px; text-decoration: none; width: 125px; border-radius: 5px; margin: 5px; padding: 10px; background-color: #ff7b00; color: white;">
+    Ver Combates
+  </a>
+{% endblock %}

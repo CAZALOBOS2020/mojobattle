@@ -1,0 +1,28 @@
+(mod (
+        PASSWORD_HASH
+        MASTER_PUZZLE_HASH
+        WALLET
+        ATTACK
+        password
+        oponent_wallet
+     )
+
+     (defconstant CREATE_COIN 51)
+     (defconstant ASSERT_MY_AMOUNT 73)
+
+         (defun-inline spend_coin (receive_puzzlehash amount)
+             (list
+               (list CREATE_COIN receive_puzzlehash amount)
+               (list ASSERT_MY_AMOUNT amount)
+             )
+         )
+
+         ; main
+
+         (if (= (sha256 password) PASSWORD_HASH)
+
+             (spend_coin oponent_wallet 100) ; correctly spend the coin
+             (x "Incorrect that was the wrong password") ; raise an exception and exit
+
+         )
+)

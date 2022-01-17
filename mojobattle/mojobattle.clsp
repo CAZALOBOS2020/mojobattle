@@ -1,0 +1,52 @@
+(mod (
+        PASSWORD_HASH
+        MASTER_PUZZLE_HASH
+        WALLET
+        ATTACK
+        password
+        amount
+        oponent_wallet
+        oponent_attack
+     )
+
+     (defconstant CREATE_COIN 51)
+     (defconstant ASSERT_MY_AMOUNT 73)
+     (defconstant MASTER_AMOUNT 9)
+     (defconstant OP_AMOUNT 90)
+
+
+     (defun-inline win (MY_WALLET my_amount)
+      (list
+        (list CREATE_COIN MY_WALLET my_amount)
+        (list ASSERT_MY_AMOUNT my_amount)
+      )
+     )
+
+     (defun-inline lose (MY_WALLET MASTER_WALLET master_amount OP_WALLET op_amount)
+      (list
+        (list CREATE_COIN MY_WALLET 1)
+        (list CREATE_COIN MASTER_WALLET master_amount)
+        (list CREATE_COIN OP_WALLET op_amount)
+
+      )
+     )
+
+     (defun-inline tie (MY_WALLET my_amount)
+      (list
+        (list CREATE_COIN MY_WALLET my_amount)
+        (list ASSERT_MY_AMOUNT my_amount)
+      )
+     )
+
+     ; main
+     (if (= (sha256 password) PASSWORD_HASH)
+       (if (= ATTACK oponent_attack)
+        (tie WALLET amount)
+        (if (logior (= ATTACK (+ oponent_attack (q . 1))) (logand (= ATTACK (q . 1)) (= oponent_attack (q . 3))))
+          (win WALLET amount)
+          (lose WALLET MASTER_PUZZLE_HASH MASTER_AMOUNT oponent_wallet OP_AMOUNT)
+        )
+       )
+       (x "Incorrect that was the wrong password")
+     )
+)

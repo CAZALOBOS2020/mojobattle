@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+   <h1 style="margin: 10px;">Create a new attack: coia tu wallet y elije un ataque</h1>
+
+    <!-- Create A New Password Coin -->
+    <form method="post">
+
+      <div class="form-group"  style="margin-top: 10px; margin-bottom: 10px;">
+        <label for="content">My Wallet</label>
+        <input type="text" name="mywallet"
+          placeholder="My Wallet" class="form-control" style="width: 100%; max-width: 250px; padding: 8px; border-radius: 5px; border-style: solid; border-width: 1px;"
+          value="{{ request.form['mywallet'] }}"></input>
+      </div>
+      <div class="form-group"  style="margin-top: 10px; margin-bottom: 10px;">
+        <label for="content">Ataque</label><br>
+
+          <input type="radio" id="1" name="attack" value="1" checked>
+            <label for="1">PIEDRA</label><br>
+          <input type="radio" id="2" name="attack" value="2">
+            <label for="2">PAPEL</label><br>
+          <input type="radio" id="3" name="attack" value="3">
+            <label for="3">TIJERA</label>
+      </div>
+
+
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary" style="text-decoration: none; width: 125px; border-radius: 5px; margin: 5px; padding: 10px; background-color: #37a17b; color: white; border-style: none">Crear</button>
+
+          <a href="{{ url_for('index') }}" style="font-size: 14px;text-decoration: none; width: 125px; border-radius: 5px; margin: 5px; padding: 10px; background-color: #a1a1a1; color: white;">
+            Back
+          </a>
+
+      </div>
+    </form>
+
+
+
+{% endblock %}
